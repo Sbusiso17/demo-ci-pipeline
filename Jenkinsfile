@@ -1,10 +1,6 @@
 pipeline {
     agent any
-    
-    tools {
-        maven 'Maven 3.8.4' // Use the Maven version configured in Jenkins
-    }
-    
+  
     stages {         
         stage('Validate') {
             steps {
@@ -26,18 +22,11 @@ pipeline {
             }
         }
             post {
-                always {
-                    // Archive test results
-                    junit '**/target/surefire-reports/TEST-*.xml'
+                success {
+                    // Actions to perform if buld is a success
+                    echo 'build Successful!!'
                 }
             }
         }
         
-        stage('Archive') {
-            steps {
-                // Archive the built artifacts
-                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
-            }
-        }
-    }
-}
+
