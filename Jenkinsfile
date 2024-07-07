@@ -14,21 +14,22 @@ pipeline {
                 // Run Maven tests
                 echo 'mvn test'
             }
+        }
 
-       stage('build') {
+        stage('Build') {
             steps {
                 // Run Maven build
                 echo 'mvn clean install'
             }
         }
-            post {
-                success {
-                    // Actions to perform if buld is a success
-                    echo 'build Successful!!'
-                }
-            }
+    }
+    
+    post {
+        success {
+            // Actions to perform if build is a success
+            echo 'Build Successful!!'
         }
     }
 }
-        
+                   
 
